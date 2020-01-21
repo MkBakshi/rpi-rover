@@ -10,20 +10,30 @@
     </head>
 <body>
 <div class="container-fluid">
-    <div class="row">
-        <div class="hidden-md-down col-lg-2" style="border: 1px solid; height: 100px; background-color: red">
+    <div class="row" id="portrait-view">
+        <div class="col-xs-12" style="height: 40vh; background-color: black">
+            <img src="http://192.168.1.103:8081/" border="0" width="100%" height="100%">
+        </div>
+        <div class="col-xs-6" style="border: 1px solid; height: 60vh; background-color: blue">
 
         </div>
-        <div class="col-xs-12 col-md-8" style="height: 100px; background-color: green">
-            
-        </div>
-        <div class="hidden-lg-up col-xs-6" style="border: 1px solid; height: 100px; background-color: blue">
+        <div class="col-xs-6" style="border: 1px solid; height: 60vh; background-color: yellow">
 
         </div>
-        <div class="col-xs-6 col-lg-2" style="border: 1px solid; height: 100px; background-color: yellow">
+    </div>
+	<div class="row" id="landscape-view">
+	    <div class="col-xs-2" style="border: 1px solid; height: 100vh; background-color: blue">
+
+        </div>
+        <div class="col-xs-8" style="height: 100vh; background-color: black">
+            <img src="http://192.168.1.103:8081/" border="0" width="100%" height="100%">
+        </div>
+        
+        <div class="col-xs-2" style="border: 1px solid; height: 100vh; background-color: yellow">
 
         </div>
     </div>
 </div>
+<script src="js/custom.js"></script>
 </body>
 </html>
