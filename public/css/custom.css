@@ -1,0 +1,22 @@
+input[type=range][orient=vertical]
+{
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* WebKit */
+    width: 8px;
+    height: 175px;
+    padding: 0 5px;
+}
+
+.slider-port{
+	border: 1px solid; 
+	height: 60vh; 
+	background-color: white; 
+	padding-left: 25%;
+}
+
+.slider-land{
+	border: 1px solid; 
+	height: 100vh; 
+	background-color: white; 
+	padding-left: 8%;
+}
