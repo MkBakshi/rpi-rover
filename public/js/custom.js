@@ -21,43 +21,80 @@ window.addEventListener("orientationchange", function() {
 }, false);
 
 window.addEventListener("load", function(){ //when page loads
-  if(screen.width > 850){
-	  var leftSliderL = document.getElementById("left-slider-l");
-	  leftSliderL.addEventListener("change", function() { //add event listener for when checkbox changes
-		socket.emit("leftSlider", Number(this.value)); //send button status to server (as 1 or 0)
+      var sliderLeft;
+	  var sliderRight;
+	  
+	  var distTop;
+	  var distLeft;
+	  var distRight;
+	  
+	  if(screen.width > 850){
+		  sliderLeft = document.getElementById("left-slider-l");
+		  sliderRight = document.getElementById("right-slider-l");
+		  distTop = document.getElementById("dist-top-l");
+		  distLeft = document.getElementById("dist-left-l");
+		  distRight = document.getElementById("dist-right-l");
+	  }else{
+		  sliderLeft = document.getElementById("left-slider-p");
+		  sliderRight = document.getElementById("right-slider-p");
+		  distTop = document.getElementById("dist-top-p");
+		  distLeft = document.getElementById("dist-left-p");
+		  distRight = document.getElementById("dist-right-p");
+	  }
+	  
+	  sliderLeft.addEventListener("change", function() { 
+		socket.emit("leftSlider", Number(this.value)); 
 	  });
-	  var rightSliderL = document.getElementById("right-slider-l");
-	  rightSliderL.addEventListener("change", function() { //add event listener for when checkbox changes
-		socket.emit("rightSlider", Number(this.value)); //send button status to server (as 1 or 0)
-	  });		 
-  }else{
-	  var leftSliderP = document.getElementById("left-slider-p");
-	  leftSliderP.addEventListener("change", function() { //add event listener for when checkbox changes
-		socket.emit("leftSlider", Number(this.value)); //send button status to server (as 1 or 0)
+	  
+	  sliderRight.addEventListener("change", function() { 
+		socket.emit("rightSlider", Number(this.value)); 
 	  });
-	  var rightSliderP = document.getElementById("right-slider-p");
-	  rightSliderP.addEventListener("change", function() { //add event listener for when checkbox changes
-		socket.emit("rightSlider", Number(this.value)); //send button status to server (as 1 or 0)
-	  });
-  }
+  
+	socket.on('leftSlider', function (data) { 
+	  //console.log("left: "+data);
+	  sliderLeft.value = data;
+	});
+
+	socket.on('rightSlider', function (data) { 
+	  //console.log("right: "+data);
+	  sliderRight.value = data;
+	});
+
+	socket.on('distanceTop', function (data) {
+		if(data > 100){
+			distTop.style.background = 'green';
+		} else if(data > 50){
+			distTop.style.background = 'orange';
+		} else {
+			distTop.style.background = 'red';
+		}
+		distTop.innerHTML = Math.round(data) + " cm";	
+		socket.emit("distanceTop", data);	  
+	});
+
+	socket.on('distanceLeft', function (data) {
+		if(data > 100){
+			distLeft.style.background = 'green';
+		} else if(data > 50){
+			distLeft.style.background = 'orange';
+		} else {
+			distLeft.style.background = 'red';
+		}
+		distLeft.innerHTML = Math.round(data) + " cm";	
+		socket.emit("distanceLeft", data);	 
+	});
+
+	socket.on('distanceRight', function (data) { 
+	    if(data > 100){
+			distRight.style.background = 'green';
+		} else if(data > 50){
+			distRight.style.background = 'orange';
+		} else {
+			distRight.style.background = 'red';
+		}
+		distRight.innerHTML = Math.round(data) + " cm";	
+	    socket.emit("distanceRight", data);	  
+	});
+
 });
 
-socket.on('leftSlider', function (data) { //get button status from client
-  if(screen.width > 850){
-	  document.getElementById("left-slider-l").value = data;	
-      socket.emit("leftSlider", data);	  
-  }else{
-	  document.getElementById("left-slider-p").value = data;
-	  socket.emit("leftSlider", data);
-  }
-});
-
-socket.on('rightSlider', function (data) { //get button status from client
-  if(screen.width > 850){
-	  document.getElementById("right-slider-l").value = data;	
-      socket.emit("rightSlider", data);	  
-  }else{
-	  document.getElementById("right-slider-p").value = data;
-	  socket.emit("rightSlider", data);
-  }
-});
