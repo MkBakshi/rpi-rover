@@ -29,7 +29,7 @@ http.listen(8080); //listen to port 8080
 
 function handler (req, res) { //create server
   if(req.url == '/'){
-	  fs.readFile(__dirname + '/public/index.html', function(err, data) { //read file index.html in public folder
+	  fs.readFile(__dirname + '/www/index.html', function(err, data) { //read file index.html in public folder
 		if (err) {
 		  res.writeHead(404, {'Content-Type': 'text/html'}); //display 404 on error
 		  return res.end("404 Not Found");
@@ -40,7 +40,7 @@ function handler (req, res) { //create server
 		return res.end();
 	  });
   }else if(req.url.endsWith("bootstrap.min.css")){
-	  fs.readFile(__dirname + '/public/css/bootstrap.min.css', function(err, data) { 
+	  fs.readFile(__dirname + '/www/css/bootstrap.min.css', function(err, data) { 
 		if (err) {
 		  res.writeHead(404, {'Content-Type': 'text/html'}); //display 404 on error
 		  return res.end("404 Not Found");
@@ -51,7 +51,7 @@ function handler (req, res) { //create server
 		return res.end();
 	  });
   }else if(req.url.endsWith("custom.css")){
-	  fs.readFile(__dirname + '/public/css/custom.css', function(err, data) { 
+	  fs.readFile(__dirname + '/www/css/custom.css', function(err, data) { 
 		if (err) {
 		  res.writeHead(404, {'Content-Type': 'text/html'}); //display 404 on error
 		  return res.end("404 Not Found");
@@ -62,7 +62,7 @@ function handler (req, res) { //create server
 		return res.end();
 	  });
   }else if(req.url.endsWith("bootstrap.min.js")){
-	  fs.readFile(__dirname + '/public/js/bootstrap.min.js', function(err, data) { 
+	  fs.readFile(__dirname + '/www/js/bootstrap.min.js', function(err, data) { 
 		if (err) {
 		  res.writeHead(404, {'Content-Type': 'text/html'}); //display 404 on error
 		  return res.end("404 Not Found");
@@ -73,7 +73,7 @@ function handler (req, res) { //create server
 		return res.end();
 	  });
   }else if(req.url.endsWith("jquery.min.js")){
-	  fs.readFile(__dirname + '/public/js/jquery.min.js', function(err, data) { 
+	  fs.readFile(__dirname + '/www/js/jquery.min.js', function(err, data) { 
 		if (err) {
 		  res.writeHead(404, {'Content-Type': 'text/html'}); //display 404 on error
 		  return res.end("404 Not Found");
@@ -84,7 +84,7 @@ function handler (req, res) { //create server
 		return res.end();
 	  });
   }else if(req.url.endsWith("socket.io.js")){
-	  fs.readFile(__dirname + '/public/js/socket.io.js', function(err, data) { 
+	  fs.readFile(__dirname + '/www/js/socket.io.js', function(err, data) { 
 		if (err) {
 		  res.writeHead(404, {'Content-Type': 'text/html'}); //display 404 on error
 		  return res.end("404 Not Found");
@@ -95,7 +95,7 @@ function handler (req, res) { //create server
 		return res.end();
 	  });
   }else if(req.url.endsWith("custom.js")){
-	  fs.readFile(__dirname + '/public/js/custom.js', function(err, data) { 
+	  fs.readFile(__dirname + '/www/js/custom.js', function(err, data) { 
 		if (err) {
 		  res.writeHead(404, {'Content-Type': 'text/html'}); //display 404 on error
 		  return res.end("404 Not Found");
