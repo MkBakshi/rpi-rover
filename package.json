@@ -2,7 +2,7 @@
   "name": "rpi-rover",
   "version": "1.0.0",
   "description": "web app for driving an rc vehicle through telepresence",
-  "main": "webserver.js",
+  "main": "rpi-rover-app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/MkBakshi/rpi-rover#readme",
   "dependencies": {
+    "ip": "^1.1.5",
     "pigpio": "^3.3.1",
     "socket.io": "^4.3.1"
   }
