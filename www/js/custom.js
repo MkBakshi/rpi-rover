@@ -96,6 +96,45 @@ window.addEventListener("load", function(){ //when page loads
 		distRight.innerHTML = Math.round(data) + " cm";	
 	    socket.emit("distanceRight", data);	  
 	});*/
+	
+	const { GamepadListener } = gamepad;
+	const listener = new GamepadListener({
+		button: {
+			analog: false
+		},
+		stick: {
+			precision: 2,
+			deadZone: 0.1
+		}
+	});
+	
+	listener.on('gamepad:connected', event => {
+		const { index, gamepad } = event.detail;
+		console.log(`Controller ${index + 1} [${gamepad.id}] connected!`);
+	});
+
+	listener.on('gamepad:disconnected', event => {
+		const { index } = event.detail;
+		console.log(`Controller ${index + 1} disconnected!`);
+	});
+
+	listener.on('gamepad:0:axis:0', event => {
+		const { index, stick, axis, value } = event.detail;
+		console.log(`Controller ${index + 1} Sitck ${stick}, axis ${axis}: ${value}`);
+		if(stick == 0){
+			socket.emit("steering", (1-((1+value)/2))); 
+		}else if(stick == 1){
+			socket.emit("accelerate", Math.abs((1-value)/-2)); 
+		}
+	});
+
+	listener.on('gamepad:0:button', event => {
+		const { index, button, value, pressed } = event.detail;
+		console.log(`Controller ${index + 1} Button ${button} Pressed: ${pressed} : ${value}`);
+	});
+				
+	
+    listener.start();
 
 });
 
