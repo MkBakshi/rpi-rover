@@ -31,6 +31,6 @@
   "dependencies": {
     "ip": "^1.1.5",
     "pigpio": "^3.3.1",
-    "socket.io": "^4.3.1"
+    "socket.io": "^4.5.3"
   }
 }
